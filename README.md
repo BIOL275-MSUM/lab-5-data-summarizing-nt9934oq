@@ -137,7 +137,7 @@ summarize(
         sampl_size= n(),
         max_sepal_length = max(sepal_length),
         min_sepal_length = min(sepal_length),
-        range_sepal_length = range(sepal_length),
+        range_sepal_length = max(sepal_length)-min(sepal_length),
         med_sepal_length = median(sepal_length),
         q1 = quantile(sepal_length, probs=0.25),
         q3=quantile(sepal_length, probs=0.75),
@@ -145,11 +145,10 @@ summarize(
         )
 ```
 
-    ## # A tibble: 2 x 8
+    ## # A tibble: 1 x 8
     ##   sampl_size max_sepal_length min_sepal_length range_sepal_len~ med_sepal_length
     ##        <int>            <dbl>            <dbl>            <dbl>            <dbl>
-    ## 1        150              7.9              4.3              4.3              5.8
-    ## 2        150              7.9              4.3              7.9              5.8
+    ## 1        150              7.9              4.3              3.6              5.8
     ## # ... with 3 more variables: q1 <dbl>, q3 <dbl>, IQR_sepal_length <dbl>
 
 ## Question 5
