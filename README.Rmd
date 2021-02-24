@@ -5,13 +5,12 @@ date: "2021-02-24"
 output: github_document
 ---
 
-"Welcome To My Lab 5 Assignment"
+Welcome To My Lab 5 Assignment
 
 Here is where we load in the data
 
-```{r}
+```{r message=FALSE}
 library(tidyverse)
-iris
 iris <- as_tibble(iris)
 
 ```
@@ -51,9 +50,12 @@ mutate(iris2,
 Calculate sepal area and petal area (area is equal to length multiplied by width). Print a table with only the variables sepal area, petal area, and species.
 
 ```{r}
+thing_with_areas <-
 mutate(iris2,
        sepal_area = sepal_length * sepal_width, 
        petal_area = petal_length * petal_width)
+
+select(thing_with_areas, Species, sepal_area, petal_area)
 
 ```
 
@@ -71,14 +73,17 @@ third quartile (q2)
 inter-quartile range (iqr)
 
 ```{r}
-summarize(iris2, sampl_size= n(),)
-summarize(iris2, max_sepal_length = max(sepal_length))
-summarize(iris2, min_sepal_length = min(sepal_length))
-summarize(iris2, range_sepal_length = range(sepal_length))
-summarize(iris2, med_sepal_length = median(sepal_length))
-summarize(iris2, q1 = quantile(sepal_length, probs=0.25))
-summarize(iris2, q3=quantile(sepal_length, probs=0.75))
-summarize(iris2, IQR_sepal_length = IQR(sepal_length))
+summarize(
+        iris2,
+        sampl_size= n(),
+        max_sepal_length = max(sepal_length),
+        min_sepal_length = min(sepal_length),
+        range_sepal_length = range(sepal_length),
+        med_sepal_length = median(sepal_length),
+        q1 = quantile(sepal_length, probs=0.25),
+        q3=quantile(sepal_length, probs=0.75),
+        IQR_sepal_length = IQR(sepal_length)
+        )
 ```
 
 ## Question 5
@@ -94,7 +99,7 @@ approximate 95% confidence interval
 
 ```{r}
 petal_grouped<- group_by(iris2,Species)
-petal_grouped
+# petal_grouped
 petal_widthsummary <-
         summarize(
                 petal_grouped,
